@@ -1,8 +1,4 @@
-def get_input():
-    with open("inputs/dec1.txt", "r") as f:
-        lines = f.readlines()
-        lines = [l.strip() for l in lines]
-        return lines
+from utils.file import get_input_list
 
 
 def password(seq, start=50):
@@ -34,7 +30,7 @@ def password(seq, start=50):
     return zero_cnt, zero_pass
 
 
-seq = get_input()
+seq = get_input_list("inputs/dec1.txt")
 # seq = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"]
 first, second = password(seq)
 print(f"First star: {first}\nSecond star: {second}")
