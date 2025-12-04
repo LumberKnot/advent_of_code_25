@@ -1,9 +1,15 @@
 
 set -euo pipefail
-echo "Executing for "$(date "+%b %-d")
 
-# Get today's day-of-month as number (no leading zero)
-today=$(date +%-d)
+# Pick day: argument if given, otherwise today
+if [[ $# -gt 0 ]]; then
+    today="$1"
+else
+    # Get today's day-of-month as number (no leading zero)
+    today=$(date +%-d)
+fi
+
+echo "Executing for "$(date "+%b")" $today"
 
 # Input URL
 url_in="https://adventofcode.com/2025/day/$today/input"
@@ -24,5 +30,8 @@ if [ ! -f "$src_file" ]; then
     echo 'from utils.file import *
     
 PATH = "'$path'"' >> "$src_file"
-
 fi 
+
+# Open firefox to the problem url
+prob_url="https://adventofcode.com/2025/day/$today"
+firefox "$prob_url"
